@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Local Font Declarations (Tajawal Self-Hosted)
+   ========================================================================== */
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tajawal-v12-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/tajawal-v12-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/tajawal-v12-latin-700.woff2') format('woff2');
+}
+
+@theme {
+  /* ==========================================================================
+     Pure Black & White Minimalist Palette (أسود وأبيض مينيملست)
+     ========================================================================== */
+  --color-slate-navy: #000000;     /* أسود نقي */
+  --color-slate-dark: #0A0A0A;     /* داكن جداً خلفيات البطاقات */
+  
+  --color-gold-amber: #000000;     /* أسود للأزرار الرئيسية */
+  --color-gold-accent: #262626;    /* رمادي داكن جدًا للتفاعل والتأشير */
+  --color-gold-light: #525252;     /* رمادي متوسط */
+
+  /* Functional / status colors (رماديات متباينة بدلاً من الألوان) */
+  --color-success: #171717;        /* أسود للناجح */
+  --color-processing: #525252;     /* رمادي لقيد المعالجة */
+  --color-urgent: #000000;         /* أسود بارز للحالات العاجلة */
+  --color-error: #000000;          /* أسود لتنبيهات الفالديشن */
+
+  /* Semantic tokens */
+  --color-background: #FFFFFF;     /* خلفية بيضاء نقية */
+  --color-surface: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #000000;
+  --color-foreground: #000000;     /* نصوص رئيسية سوداء حادة */
+  --color-muted: #F5F5F5;          /* خلفيات ثانوية رمادية فاتحة جداً */
+  --color-muted-foreground: #737373;/* نصوص فرعية رمادية مريحة للعين */
+  --color-secondary: #F5F5F5;
+  --color-secondary-foreground: #000000;
+
+  /* Primary & Accent tokens */
+  --color-primary: #000000;        /* أسود رئيسي */
+  --color-primary-foreground: #FFFFFF;
+
+  --color-accent: #171717;         /* رمادي غامق جداً للتمييز */
+  --color-accent-foreground: #FFFFFF;
+  --color-highlight: #262626;
+  --color-border: #E5E5E5;         /* حدود ناعمة ودقيقة جداً */
+
+  --font-sans: "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --radius: 1rem;
+
+  /* ظلال أحادية متناسقة */
+  --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+  --shadow-glow: 0 15px 35px -10px rgba(0, 0, 0, 0.12);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+}
+
+/* ==========================================================================
+   Page Container Utility
+   ========================================================================== */
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-page {
+    padding-inline: 3.5rem;
+  }
+}
+
+@layer utilities {
+  /* زجاج أحادي أحادي اللون */
+  .glass {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  /* تدرج أسود حاد للعناوين */
+  .text-gradient {
+    background: linear-gradient(135deg, #000000 30%, #525252 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .mesh-bg {
+    background-color: var(--color-background);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* حالات الشكاوى بأسلوب المينيملست (رماديات وحدود سوداء) */
+  .status-success {
+    background-color: #F5F5F5;
+    color: #000000;
+    border: 1px solid #E5E5E5;
+  }
+  .status-processing {
+    background-color: #FAFAFA;
+    color: #525252;
+    border: 1px solid #E5E5E5;
+  }
+  .status-urgent {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 1px solid #000000;
+  }
+
+  /* أخطاء التنسيق والتنبيهات */
+  .form-error {
+    color: #000000;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-top: 0.375rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .input-error {
+    border-color: #000000 !important;
+  }
+  .input-error:focus {
+    outline-color: #000000 !important;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
